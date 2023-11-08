@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run tests
-      run: mvn clean test
+      run: mvn clean test -DbrowserType=remote
 
     - name: Load test report history
       uses: actions/checkout@v3
