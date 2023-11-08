@@ -13,6 +13,8 @@ import java.util.Map;
 public class CapabilityFactory implements ICapabilitiesFactory {
 
     private Map<String, ICapabilitiesProvider> capabilities = new HashMap<>();
+    private final String run = System.getProperty("browserType",
+            PropertyReader.getInstance().getProperty(Config.BROWSERTYPE.getKey()));
 
     public CapabilityFactory(){
         capabilities.put("firefox", new FireFoxCapabilitiesProvider());
@@ -23,7 +25,7 @@ public class CapabilityFactory implements ICapabilitiesFactory {
     public MutableCapabilities getCapabilities() throws TafRuntimeException {
         return capabilities.entrySet().stream()
                 .filter(entry -> entry.getKey().toLowerCase().startsWith(PropertyReader.getInstance().getProperty(Config.BROWSER.getKey())))
-                .map(entry -> entry.getValue().provideCapabilities())
+                .map(entry -> entry.getValue().provideCapabilities(run))
                 .findFirst()
                 .orElseThrow(() -> new TafRuntimeException("Capabilities are empty"));
     }

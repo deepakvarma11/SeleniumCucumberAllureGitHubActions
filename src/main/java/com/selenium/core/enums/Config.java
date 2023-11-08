@@ -2,7 +2,8 @@ package com.selenium.core.enums;
 
 public enum Config {
 
-    BROWSER("browser");
+    BROWSER("browser"),
+    BROWSERTYPE("browserType");
 
     private final String key;
 

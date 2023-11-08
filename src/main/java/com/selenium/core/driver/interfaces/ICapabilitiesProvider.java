@@ -4,5 +4,5 @@ import org.openqa.selenium.MutableCapabilities;
 
 public interface ICapabilitiesProvider {
 
-    MutableCapabilities provideCapabilities();
+    MutableCapabilities provideCapabilities(final String run);
 }

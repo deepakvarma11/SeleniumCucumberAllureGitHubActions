@@ -6,8 +6,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ChromeCapabilitiesProvider implements ICapabilitiesProvider {
     @Override
-    public MutableCapabilities provideCapabilities() {
+    public MutableCapabilities provideCapabilities(final String run) {
         ChromeOptions chromeOptions = new ChromeOptions();
+        if (run.equalsIgnoreCase("remote")) {
+            chromeOptions.addArguments("headless");
+            chromeOptions.addArguments("--disabled-gpu");
+            chromeOptions.addArguments("--no-sandbox");
+        }
         return chromeOptions;
     }
 }

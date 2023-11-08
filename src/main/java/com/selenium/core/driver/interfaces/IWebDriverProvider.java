@@ -6,5 +6,5 @@ import org.openqa.selenium.WebDriver;
 
 public interface IWebDriverProvider {
 
-    WebDriver createWebDriver(final String browser) throws BrowserException, TafRuntimeException;
+    WebDriver createWebDriver() throws BrowserException, TafRuntimeException;
 }

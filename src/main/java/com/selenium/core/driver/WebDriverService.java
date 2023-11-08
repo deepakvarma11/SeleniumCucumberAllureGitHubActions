@@ -14,10 +14,8 @@ public class WebDriverService {
     private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     public void initWebDriver() {
-        GlobalDriverProvider globalDriverProvider = new GlobalDriverProvider();
-        try{
-            final String browser = PropertyReader.getInstance().getProperty(Config.BROWSER.getKey());
-            driverThreadLocal.set(globalDriverProvider.createWebDriver(browser));
+        try {
+            driverThreadLocal.set(new GlobalDriverProvider().createWebDriver());
             maximizeBrowser();
             deleteCookies();
         } catch (TafRuntimeException e) {
@@ -27,19 +25,20 @@ public class WebDriverService {
         }
     }
 
-    public static synchronized WebDriver getDriver(){
+    public static synchronized WebDriver getDriver() {
         return driverThreadLocal.get();
     }
 
-    public void deleteCookies(){
+    public void deleteCookies() {
         driverThreadLocal.get().manage().deleteAllCookies();
     }
-    public void maximizeBrowser(){
+
+    public void maximizeBrowser() {
         driverThreadLocal.get().manage().window().maximize();
     }
 
-    public static void destroyWebDriver(){
-        if(Objects.nonNull(driverThreadLocal.get())){
+    public static void destroyWebDriver() {
+        if (Objects.nonNull(driverThreadLocal.get())) {
             driverThreadLocal.get().close();
             driverThreadLocal.get().quit();
         }
