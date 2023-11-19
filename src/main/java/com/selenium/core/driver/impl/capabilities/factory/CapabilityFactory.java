@@ -19,6 +19,7 @@ public class CapabilityFactory implements ICapabilitiesFactory {
     public CapabilityFactory(){
         capabilities.put("firefox", new FireFoxCapabilitiesProvider());
         capabilities.put("chrome", new ChromeCapabilitiesProvider());
+        capabilities.put("edge", new EdgeCapabilitiesProvider());
     }
 
     @Override

@@ -1,9 +1,9 @@
 Feature: Login functionality
   I want to verify login functionality
 
-  @login
+  @login @positive
   Scenario Outline: Login with valid creds into KSRTC website
-    Given Goto to Homepage "url"
+    Given Open Homepage
     Then HomePage is displayed
     When Click on Signin
     Then Login page is displayed
@@ -16,11 +16,11 @@ Feature: Login functionality
       | email                    | password | username     |
       | deepakvarma543@gmail.com | Rebel@11 | deepak varma |
 
-  @login
+  @login @negative
   Scenario: Login with invalid creds into KSRTC website
-    Given Goto to Homepage "url"
-    Then HomePage is displayed
-    When Click on Signin
+    Given Open Loginpage
+#    Then HomePage is displayed
+#    When Click on Signin
     Then Login page is displayed
     When User enters "deepakvarma543@gmail.com" and "Deepak@1"
     And Click login

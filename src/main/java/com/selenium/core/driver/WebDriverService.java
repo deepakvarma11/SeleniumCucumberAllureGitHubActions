@@ -1,26 +1,24 @@
 package com.selenium.core.driver;
 
 import com.selenium.core.driver.impl.capabilities.drivers.GlobalDriverProvider;
-import com.selenium.core.enums.Config;
 import com.selenium.core.exceptions.BrowserException;
 import com.selenium.core.exceptions.TafRuntimeException;
-import com.selenium.core.utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 
+import java.time.Duration;
 import java.util.Objects;
 
 public class WebDriverService {
 
-    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     public void initWebDriver() {
         try {
             driverThreadLocal.set(new GlobalDriverProvider().createWebDriver());
+            pageLoadtimeout();
             maximizeBrowser();
             deleteCookies();
-        } catch (TafRuntimeException e) {
-            throw new RuntimeException(e);
-        } catch (BrowserException e) {
+        } catch (TafRuntimeException | BrowserException e) {
             throw new RuntimeException(e);
         }
     }
@@ -33,6 +31,10 @@ public class WebDriverService {
         driverThreadLocal.get().manage().deleteAllCookies();
     }
 
+    public void pageLoadtimeout(){
+        driverThreadLocal.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(100));
+        driverThreadLocal.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(100));
+    }
     public void maximizeBrowser() {
         driverThreadLocal.get().manage().window().maximize();
     }

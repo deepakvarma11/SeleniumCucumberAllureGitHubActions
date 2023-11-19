@@ -1,19 +1,13 @@
 package com.selenium.stepdefs.steps;
 
 import com.selenium.core.driver.WebDriverService;
-import com.selenium.core.utils.PropertyReader;
 import com.selenium.pages.impl.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-
-import java.util.Properties;
 
 public class HomePageDefinitionSteps {
 
-    WebDriver driver = WebDriverService.getDriver();
-    Properties pr = PropertyReader.getInstance();
     HomePage hp = new HomePage(WebDriverService.getDriver());
 
     @Given("I am in the Background scenario")
@@ -21,9 +15,10 @@ public class HomePageDefinitionSteps {
         System.out.println("IN THE BACKGROUND SCENARIO");
     }
 
-    @Given("Goto to Homepage {string}")
-    public void goto_to_homepage(String string) {
-        driver.get(pr.getProperty(string));
+
+    @Given("Open Homepage")
+    public void open_homepage() {
+        hp.openHomePage();
     }
 
     @Then("HomePage is displayed")
