@@ -19,7 +19,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class GlobalDriverProvider implements IWebDriverProvider {
 
     private final ICapabilitiesFactory factory = new CapabilityFactory();
-    private final String browser = PropertyReader.getInstance().getProperty(Config.BROWSER.getKey());
+    private final String browserConfig = PropertyReader.getInstance().getProperty(Config.BROWSER.getKey());
+    private final String browser = System.getProperty("browser", browserConfig);
+
 
     @Override
     public WebDriver createWebDriver() throws BrowserException, TafRuntimeException {

@@ -2,6 +2,16 @@
 name: Java CI with Maven
 
 on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Which browser to test
+        required: true
+        options:
+          - chrome
+          - firefox
+          - edge
   push:
     branches: [ "main" ]
   pull_request:
@@ -25,7 +35,7 @@ jobs:
     - run: chrome --version
     
     - name: Run tests
-      run: mvn clean test -DbrowserType=remote
+      run: mvn clean test -DbrowserType=remote -browser=${{ github.event.inputs.browser }}
 
     - name: Load test report history
       uses: actions/checkout@v3

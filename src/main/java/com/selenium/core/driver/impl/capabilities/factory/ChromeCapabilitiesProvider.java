@@ -12,9 +12,10 @@ public class ChromeCapabilitiesProvider implements ICapabilitiesProvider {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (run.equalsIgnoreCase("remote")) {
             chromeOptions.addArguments("--headless");
-            chromeOptions.addArguments("--remote-allow-origins=*");
+            chromeOptions.addArguments("--disable-dev-shm-usage");
+//            chromeOptions.addArguments("--remote-allow-origins=*");
             chromeOptions.addArguments("--disable-notifications");
-            chromeOptions.addArguments("--disabled-gpu");
+//            chromeOptions.addArguments("--disabled-gpu");
             chromeOptions.addArguments("--no-sandbox");
 //            chromeOptions.addArguments(Arrays.asList("--allow-running-insecure-content", "--ignore-certificate-errors",
 //                    "--disable-popup-blocking", "--disable-dev-shm-usage", "--no-sandbox", "--disable-gpu", "--disable-blink-features=AutomationControlled"));
