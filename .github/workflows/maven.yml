@@ -31,7 +31,7 @@ jobs:
     - run: chrome --version
     
     - name: Run tests
-      run: mvn clean test -DbrowserType=remote -browser=${{ github.event.inputs.browser }}
+      run: mvn clean test -DbrowserType=remote -Dbrowser=${{ github.event.inputs.browser }}
 
     - name: Load test report history
       uses: actions/checkout@v3
