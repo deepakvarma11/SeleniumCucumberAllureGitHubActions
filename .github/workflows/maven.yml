@@ -20,6 +20,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
+    
     - name: Run tests
       run: mvn clean test -DbrowserType=local
 
