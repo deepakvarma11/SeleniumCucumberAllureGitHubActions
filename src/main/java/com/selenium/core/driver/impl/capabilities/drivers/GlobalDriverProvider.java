@@ -25,6 +25,7 @@ public class GlobalDriverProvider implements IWebDriverProvider {
 
     @Override
     public WebDriver createWebDriver() throws BrowserException, TafRuntimeException {
+//        System.setProperty("webdriver.http.factory", "jdk-http-client");
         if (browser.equalsIgnoreCase("chrome")) {
             return new ChromeDriver(new ChromeOptions().merge(createCapabilities()));
         } else if (browser.equalsIgnoreCase("firefox")) {
