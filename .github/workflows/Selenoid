@@ -1,0 +1,22 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Run selenium testcases using selenoid server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+ 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Start selenoid
+      uses: Xotabu4/selenoid-github-action@v2
+    - uses: actions/checkout@v1
+
+    - name: Run tests
+      run: mvn clean test -DbrowserType=remote -Dbrowser=chrome
