@@ -11,12 +11,13 @@ public class ChromeCapabilitiesProvider implements ICapabilitiesProvider {
     public MutableCapabilities provideCapabilities(final String run) {
         ChromeOptions chromeOptions = new ChromeOptions();
         if (run.equalsIgnoreCase("remote")) {
+            chromeOptions.addArguments("--remote-allow-origins=*");
             chromeOptions.addArguments("--headless");
-            chromeOptions.addArguments("--disable-dev-shm-usage");
-           chromeOptions.addArguments("--remote-allow-origins=*");
-            chromeOptions.addArguments("--disable-notifications");
+            // chromeOptions.addArguments("--disable-dev-shm-usage");
+           
+            // chromeOptions.addArguments("--disable-notifications");
 //            chromeOptions.addArguments("--disabled-gpu");
-            chromeOptions.addArguments("--no-sandbox");
+            // chromeOptions.addArguments("--no-sandbox");
 //            chromeOptions.addArguments(Arrays.asList("--allow-running-insecure-content", "--ignore-certificate-errors",
 //                    "--disable-popup-blocking", "--disable-dev-shm-usage", "--no-sandbox", "--disable-gpu", "--disable-blink-features=AutomationControlled"));
         }
