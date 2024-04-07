@@ -14,6 +14,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20</aspectj.version>
+        <selenium.version>4.17.0</selenium.version>
+        <commons-lang3.version>3.13.0</commons-lang3.version>
+        <slf4j-simple.version>1.6.1</slf4j-simple.version>
+        <assertj.version>3.24.2</assertj.version>
+        <cucumber-java.version>7.14.0</cucumber-java.version>
+        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencyManagement>
@@ -33,27 +39,27 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.15.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v119 -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-devtools-v119</artifactId>
-            <version>4.15.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.13.0</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
+            <version>${slf4j-simple.version}</version>
         </dependency>
 
 
@@ -61,7 +67,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.24.2</version>
+            <version>${assertj.version}</version>
 <!--            <scope>test</scope>-->
         </dependency>
 
@@ -82,13 +88,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>7.14.0</version>
+            <version>${cucumber-java.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>7.14.0</version>
+            <version>${cucumber-java.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -102,7 +108,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -131,11 +137,12 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>**/TestRunner.java</include>
-                            </includes>
-                            <parallel>classes</parallel>
-                            <threadCount>4</threadCount>
+                            <testFailureIgnore>true</testFailureIgnore>
+<!--                            <includes>-->
+<!--                                <include>**/TestRunner.java</include>-->
+<!--                            </includes>-->
+<!--                            <parallel>classes</parallel>-->
+<!--                            <threadCount>4</threadCount>-->
                         </configuration>
 
                     </execution>

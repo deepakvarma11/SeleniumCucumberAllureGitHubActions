@@ -5,7 +5,7 @@ import com.selenium.core.driver.interfaces.ICapabilitiesFactory;
 import com.selenium.core.driver.interfaces.IWebDriverProvider;
 import com.selenium.core.enums.Config;
 import com.selenium.core.exceptions.BrowserException;
-import com.selenium.core.exceptions.TafRuntimeException;
+import com.selenium.core.exceptions.TestRuntimeException;
 import com.selenium.core.utils.PropertyReader;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +24,7 @@ public class GlobalDriverProvider implements IWebDriverProvider {
 
 
     @Override
-    public WebDriver createWebDriver() throws BrowserException, TafRuntimeException {
+    public WebDriver createWebDriver() throws BrowserException, TestRuntimeException {
 //        System.setProperty("webdriver.http.factory", "jdk-http-client");
         if (browser.equalsIgnoreCase("chrome")) {
             return new ChromeDriver(new ChromeOptions().merge(createCapabilities()));
@@ -37,7 +37,7 @@ public class GlobalDriverProvider implements IWebDriverProvider {
         }
     }
 
-    public MutableCapabilities createCapabilities() throws TafRuntimeException {
+    public MutableCapabilities createCapabilities() throws TestRuntimeException {
         return factory.getCapabilities();
     }
 }

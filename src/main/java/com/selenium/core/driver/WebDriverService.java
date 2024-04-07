@@ -2,7 +2,7 @@ package com.selenium.core.driver;
 
 import com.selenium.core.driver.impl.capabilities.drivers.GlobalDriverProvider;
 import com.selenium.core.exceptions.BrowserException;
-import com.selenium.core.exceptions.TafRuntimeException;
+import com.selenium.core.exceptions.TestRuntimeException;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
@@ -18,7 +18,7 @@ public class WebDriverService {
             pageLoadtimeout();
             maximizeBrowser();
             deleteCookies();
-        } catch (TafRuntimeException | BrowserException e) {
+        } catch (TestRuntimeException | BrowserException e) {
             throw new RuntimeException(e);
         }
     }
