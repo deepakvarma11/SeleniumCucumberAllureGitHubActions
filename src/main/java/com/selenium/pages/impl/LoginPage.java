@@ -3,26 +3,22 @@ package com.selenium.pages.impl;
 import com.selenium.core.annotations.CurrentUrl;
 import com.selenium.pages.interfaces.ILoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+
+import static com.selenium.core.webElements.ActionsClass.withActions;
+import static com.selenium.core.webElements.ElementUtils.findElementBySelector;
+import static com.selenium.core.webElements.ElementUtils.findElementByXpath;
 
 @CurrentUrl(urls = {"/login/show.do"})
 public class LoginPage extends AbstractBasePage implements ILoginPage {
 
-    private WebDriver driver;
-
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    private final By loginHere = By.xpath("//h5[contains(text(),'Login Here')]");
-    private final By username = By.name("userName");
-    private final By password = By.id("password");
-    private final By termConditions = By.id("TermsConditions");
-    private final By loginBtn = By.id("submitBtn");
-    private final By afterLoginUsername = By.xpath("//span[contains(@class,'font-weight-bold text-uppercase')]");
-    private final By loginIncorrectMsg = By.xpath("//div[@id='errorMsg']/strong");
+    private static final String LOGIN_HERE = "//h5[contains(text(),'Login Here')]";
+    private static final String USERNAME = "userName";
+    private static final String PASSWORD = "password";
+    private static final String TERMS_CONDITIONS = "TermsConditions";
+    private static final String LOGIN_BTN = "submitBtn";
+    private static final String AFTER_LOGIN_USERNAME = "//span[contains(@class,'font-weight-bold " +
+            "text-uppercase')]";
+    private static final String LOGIN_INCORRECT_MSG = "//div[@id='errorMsg']/strong";
 
     @Override
     public void openLoginPage() {
@@ -30,32 +26,31 @@ public class LoginPage extends AbstractBasePage implements ILoginPage {
     }
 
     public void loginPageDisplayed() {
-        driver.findElement(loginHere).isDisplayed();
+        findElementByXpath(LOGIN_HERE, "login here button").isDisplayed();
     }
 
     public void enterUsername(String text) {
-        driver.findElement(username).sendKeys(text);
+        findElementBySelector(By.name(USERNAME), "Username input").sendText(text);
     }
 
     public void enterPassword(String text) {
-        driver.findElement(password).sendKeys(text);
-        Actions ac = new Actions(driver);
-        ac.sendKeys(Keys.TAB).sendKeys(Keys.SPACE).build().perform();
+        findElementBySelector(By.id(PASSWORD), "Password input").sendText(text);
+        withActions().sendTab().sendSpace().done();
     }
 
     public void acceptTermAndConditions() {
-        driver.findElement(termConditions).click();
+        findElementBySelector(By.id(TERMS_CONDITIONS), TERMS_CONDITIONS).click();
     }
 
     public void clickLogin() {
-        driver.findElement(loginBtn).click();
+        findElementBySelector(By.id(LOGIN_BTN), LOGIN_BTN).click();
     }
 
     public boolean verifyInvalidLogin() {
-        return driver.findElement(loginIncorrectMsg).getText().equals("Login incorrect. Please try again");
+        return findElementByXpath(LOGIN_INCORRECT_MSG, "").getText().equals("Login incorrect. Please try again");
     }
 
     public String verifyUsername() {
-        return driver.findElement(afterLoginUsername).getText().toLowerCase();
+        return findElementByXpath(AFTER_LOGIN_USERNAME, "").getText().toLowerCase();
     }
 }

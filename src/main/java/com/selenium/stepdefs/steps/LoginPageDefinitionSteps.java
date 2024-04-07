@@ -1,6 +1,5 @@
 package com.selenium.stepdefs.steps;
 
-import com.selenium.core.driver.WebDriverService;
 import com.selenium.pages.impl.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +8,7 @@ import org.assertj.core.api.Assertions;
 
 public class LoginPageDefinitionSteps {
 
-    LoginPage lp = new LoginPage(WebDriverService.getDriver());
+    LoginPage lp = new LoginPage();
 
     @Given("Open Loginpage")
     public void open_homepage() {

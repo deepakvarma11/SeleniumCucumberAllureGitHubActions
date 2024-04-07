@@ -1,6 +1,5 @@
 package com.selenium.stepdefs.steps;
 
-import com.selenium.core.driver.WebDriverService;
 import com.selenium.pages.impl.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,7 +7,7 @@ import io.cucumber.java.en.When;
 
 public class HomePageDefinitionSteps {
 
-    HomePage hp = new HomePage(WebDriverService.getDriver());
+    HomePage hp = new HomePage();
 
     @Given("I am in the Background scenario")
     public void i_am_in_the_background_scenario() {
