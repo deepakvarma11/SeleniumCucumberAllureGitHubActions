@@ -4,9 +4,6 @@
 name: Run selenium testcases using selenoid server
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
  
 
